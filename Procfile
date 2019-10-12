@@ -1,1 +1,1 @@
-web: gunicorn DesarrolloWeb-master.wsgi --log-file - 
+web: gunicorn DesarrolloWeb.wsgi --log-file - 
