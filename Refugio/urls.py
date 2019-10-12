@@ -17,6 +17,8 @@ from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls import url
+from django.config import settings
+from django.config.urls.static import static
 
 
 
@@ -28,4 +30,4 @@ urlpatterns = [
     path('adopcion/', include('Apps.Adopcion.urls', namespace='adopcion')),
     path('accounts/', include('django.contrib.auth.urls')),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_URL)
