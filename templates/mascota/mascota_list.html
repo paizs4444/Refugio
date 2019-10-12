@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		{% if object_list %}
+		<tr>
+			<td align='center'>#</td>
+			<td align='center'>Nombre</td>
+			<td align='center'>Sexo</td>
+			<td align='center'>Edad</td>
+			<td align='center'>Fecha de Rescate</td>
+			<td align='center'>Vacunas</td>
+			<td align='center'>Adoptante</td>
+			<td align='center'>Acciones</td>
+		</tr>
+		{% endif %}
+
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for mascota in object_list %}
+		<tr>
+			<td align='center'>{{ mascota.id }}</td>
+			<td align='center'>{{ mascota.Nombre }}</td>
+			<td align='center'>{{ mascota.Sexo }}</td>
+			<td align='center'>{{ mascota.Edad_aproximada }}</td>
+			<td align='center'>{{ mascota.Fecha_rescate }}</td>
+			<td>
+			<ul>{% for vacuna in mascota.Vacuna.all %}
+				<li align='center'>
+					{{vacuna.Nombre}}
+				</li>
+				{% endfor %}
+			</ul>
+    		</td>
+			<td align='center'> {{ mascota.Persona }}</td>
+			<td align='center'>
+				<a class="btn btn-primary" href="{% url 'mascota:mascota_editar' mascota.id %}">Editar</a>
+				<a style="margin-left: 20px" class="btn btn-danger" href="{% url 'mascota:mascota_eliminar' mascota.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de mascotas</h1>
+		{% endif %}
+	</tbody>
+</table>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+
+			<ul class="pager">
+				<li>
+					{% if page_obj.has_previous %}
+			       	 <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+					{% endif %}
+			        </li>
+				<li>
+					{% if page_obj.has_next %}
+			     	 <a style="margin-left: 300px" href="?page={{ page_obj.next_page_number }}">Next</a>
+			    	{% endif %}
+			    </li>
+			</ul>
+
+		</div>
+	</div>
+</div>
+{% endblock%}

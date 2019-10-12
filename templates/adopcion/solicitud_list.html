@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		{% if object_list %}
+		<tr>
+			<td align='center'>No. Solicitud</td>
+			<td align='center'>Adoptante</td>
+			<td align='center'>No. Mascotas</td>
+			<td align='center'>Razones</td>
+			<td align='center'>Acciones</td>
+		</tr>
+		{% endif %}
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for solicitud in object_list %}
+		<tr>
+			<td align='center'>{{ solicitud.id }}</td>
+			<td align='center'>{{ solicitud.Persona }}</td>
+			<td align='center'>{{ solicitud.Numero_mascotas }}</td>
+			<td align='center'>{{ solicitud.Razones }}</td>
+
+			<td align='center'>
+				<a class="btn btn-primary" href="{% url 'adopcion:solicitud_editar' solicitud.id %}">Editar</a>
+				<a style="margin-left: 20px" class="btn btn-danger" href="{% url 'adopcion:solicitud_eliminar' solicitud.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de solicitudes</h1>
+		{% endif %}
+	</tbody>
+</table>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+
+			<ul class="pager">
+				<li>
+					{% if page_obj.has_previous %}
+			       	 <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+					{% endif %}
+			        </li>
+				<li>
+					{% if page_obj.has_next %}
+			     	 <a style="margin-left: 300px" href="?page={{ page_obj.next_page_number }}">Next</a>
+			    	{% endif %}
+			    </li>
+			</ul>
+
+		</div>
+	</div>
+</div>
+{% endblock%}

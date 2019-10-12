@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% block navbar %}
+  <div class="bs-docs-section clearfix">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="bs-component">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                          <a class="navbar-brand" href="{% url 'index:index' %}">INICIO</a>
+                        </div>
+                  </div>
+              </nav>
+          </div>
+          </div>
+      </div>
+  </div>
+
+{% endblock %}
+{% block content %}
+<form method="post">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			{% csrf_token %}
+			{{ form.as_p }}
+
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit">Guardar</button>
+			</div>
+		</div>
+	</div>
+
+</form>
+
+{% endblock %}

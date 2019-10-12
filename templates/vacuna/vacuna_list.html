@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		{% if object_list %}
+		<tr>
+			<td align='center'>#</td>
+			<td align='center'>Nombre</td>
+			<td align='center'>Acciones</td>
+		</tr>
+		{% endif %}
+
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for vacuna in object_list %}
+		<tr>
+			<td align='center'>{{ vacuna.id }}</td>
+			<td align='center'>{{ vacuna.Nombre }}</td>
+			<td align='center'>
+				<a class="btn btn-primary" href="{% url 'mascota:vacuna_editar' vacuna.id %}">Editar</a>
+				<a style="margin-left: 20px" class="btn btn-danger" href="{% url 'mascota:vacuna_eliminar' vacuna.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de vacunas</h1>
+		{% endif %}
+	</tbody>
+</table>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+
+			<ul class="pager">
+				<li>
+					{% if page_obj.has_previous %}
+			       	 <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+					{% endif %}
+			        </li>
+				<li>
+					{% if page_obj.has_next %}
+			     	 <a style="margin-left: 300px" href="?page={{ page_obj.next_page_number }}">Next</a>
+			    	{% endif %}
+			    </li>
+			</ul>
+
+		</div>
+	</div>
+</div>
+{% endblock%}
