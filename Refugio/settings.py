@@ -132,7 +132,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/mascota/listar'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://refugioweb.herokuapp.com/'
 
 STATICFILES_DIRS=(os.path.join(BASE_DIR, 'static'),)
 
