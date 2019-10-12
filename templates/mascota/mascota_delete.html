@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			{% csrf_token %}
-			<h3>¿Desea eliminar el registro de {{ object.nombre }}?</h3>
+			<h3>¿Desea eliminar el registro de {{ object.Nombre }}?</h3>
 			<center>
 			<button class="btn btn-danger" type="submit">Sí, eliminar</button>
 			<a class= "btn btn-default" href="{% url 'mascota:mascota_listar' %}">Cancelar</a>
