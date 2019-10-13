@@ -6,7 +6,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			{% csrf_token %}
 			{{ form.as_p }}
-
+<style>.calendar>table>caption{caption-side:unset}</style><!--caption fix for bootstrap4-->
 			<div class="form-group">
 <a class="btn btn-primary" href="{% url 'mascota:vacuna_crear' %}">Agregar Vacuna</a>
 			</div>

@@ -19,14 +19,16 @@ from django.conf import settings
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.i18n import JavaScriptCatalog
 
 
 
 urlpatterns = [
     path('', include('Apps.Mascota.urls', namespace='index')),
     path('admin/', admin.site.urls),
+    path('jsi18n', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('usuario/', include('Apps.Usuario.urls')),
-    path('mascota/', include('Apps.Mascota.urls', namespace='mascota')),
+    path('mascota/', include('Apps.Mascota.urls', namespace='mascota',)),
     path('adopcion/', include('Apps.Adopcion.urls', namespace='adopcion')),
     path('accounts/', include('django.contrib.auth.urls')),
 

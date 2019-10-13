@@ -1,5 +1,6 @@
 from django import forms
 from Apps.Mascota.models import Mascota, Vacuna
+from django.contrib.admin import widgets
 
 class MascotaForm(forms.ModelForm):
 
@@ -28,10 +29,11 @@ class MascotaForm(forms.ModelForm):
          'Nombre': forms.TextInput(attrs={'class':'form-control'}),
          'Sexo': forms.Select(attrs={'class':'form-control'}),
          'Edad_aproximada': forms.TextInput(attrs={'class':'form-control'}),
-         'Fecha_rescate': forms.SelectDateWidget(years=range(1990,2050), attrs={'class':'form-control'}),
-         'Persona': forms.Select(attrs={'class':'form-control'}),
+         'Fecha_rescate': widgets.AdminDateWidget(),
+         'Persona': forms.Select(attrs={'size': '1','class':'form-control'}),
          'Vacuna': forms.CheckboxSelectMultiple(),
          }
+
 
 class VacunaForm(forms.ModelForm):
 
